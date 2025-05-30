@@ -1,0 +1,14 @@
+version: "3.7"
+name: beny-bot
+
+services:
+  backend:
+    image: node:24
+    container_name: backend
+    working_dir: /home/node/app
+    volumes:
+      - ../../backend:/home/node/app
+    command:
+      - npm
+      - run
+      - start:dev
