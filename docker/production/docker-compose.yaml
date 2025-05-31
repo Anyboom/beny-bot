@@ -3,12 +3,5 @@ name: "beny-bot"
 
 services:
   backend:
-    image: node:24
+    image: danilkavolkov/beny-bot-image:latest
     container_name: backend
-    working_dir: /home/node/app
-    volumes:
-      - ../../backend:/home/node/app
-    command:
-      - npm
-      - run
-      - start:dev
