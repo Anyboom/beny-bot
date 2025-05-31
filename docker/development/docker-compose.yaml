@@ -1,5 +1,5 @@
 version: "3.7"
-name: beny-bot
+name: "beny-bot"
 
 services:
   backend:
