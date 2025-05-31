@@ -5,3 +5,9 @@ services:
   backend:
     image: danilkavolkov/beny-bot-image:latest
     container_name: backend
+    environment:
+      ADMIN_CHAT_ID: ${ADMIN_CHAT_ID}
+      CHANNEL_ID: ${CHANNEL_ID}
+      GROUP_CHAT_ID: ${GROUP_CHAT_ID}
+      MODERATOR_CHAT_ID: ${MODERATOR_CHAT_ID}
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}

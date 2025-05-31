@@ -27,11 +27,11 @@ jobs:
           push: true
           tags: ${{ env.DOCKER_IMAGE_NAME }}
           build-args: |
-            ADMIN_CHAT_ID_ARG=${{ secrets.ADMIN_CHAT_ID }}
-            CHANNEL_ID_ARG=${{ secrets.CHANNEL_ID }}
-            GROUP_CHAT_ID_ARG=${{ secrets.GROUP_CHAT_ID }}
-            MODERATOR_CHAT_ID_ARG=${{ secrets.MODERATOR_CHAT_ID }}
-            TELEGRAM_BOT_TOKEN_ARG=${{ secrets.TELEGRAM_BOT_TOKEN }}
+            ADMIN_CHAT_ID=${{ secrets.ADMIN_CHAT_ID }}
+            CHANNEL_ID=${{ secrets.CHANNEL_ID }}
+            GROUP_CHAT_ID=${{ secrets.GROUP_CHAT_ID }}
+            MODERATOR_CHAT_ID=${{ secrets.MODERATOR_CHAT_ID }}
+            TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
@@ -49,6 +49,11 @@ jobs:
       - name: Copy docker-compose.yml
         run: |
           scp -o StrictHostKeyChecking=no docker/production/docker-compose.yaml ${{ secrets.SSH_USER}}@${{secrets.SSH_HOST}}:docker-compose.yml
-      - name: Connect, pull and start app
+      - name: Pull application
         run: |
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker compose pull && docker compose up -d --build --force-recreate && exit"
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker compose pull && exit"
+      - name: Start application
+        run: |
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }} 
+          MODERATOR_CHAT_ID=${{ secrets.MODERATOR_CHAT_ID }} GROUP_CHAT_ID=${{ secrets.GROUP_CHAT_ID }} 
+          CHANNEL_ID=${{ secrets.CHANNEL_ID }} ADMIN_CHAT_ID=${{ secrets.ADMIN_CHAT_ID }} docker compose up -d && exit"
