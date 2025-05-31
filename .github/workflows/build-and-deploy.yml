@@ -45,6 +45,6 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
       - name: Copy docker-compose.yml
-        run: scp docker/production/docker-compose-secret.yaml ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}}:docker-compose.yml
+        run: scp docker/production/docker-compose.yaml ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}}:docker-compose.yml
       - name: Connect, pull and start app
         run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker-compose pull && docker-compose up -d && exit"
