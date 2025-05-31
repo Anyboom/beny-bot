@@ -32,7 +32,6 @@ jobs:
             GROUP_CHAT_ID=${{ secrets.GROUP_CHAT_ID }}
             MODERATOR_CHAT_ID=${{ secrets.MODERATOR_CHAT_ID }}
             TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}
-            NODE_ENV=PRODUCTION
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
