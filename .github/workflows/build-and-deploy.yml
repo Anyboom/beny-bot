@@ -26,12 +26,6 @@ jobs:
           file: docker/production/dockerfiles/backend.Dockerfile
           push: true
           tags: ${{ env.DOCKER_IMAGE_NAME }}
-          build-args: |
-            ADMIN_CHAT_ID=${{ secrets.ADMIN_CHAT_ID }}
-            CHANNEL_ID=${{ secrets.CHANNEL_ID }}
-            GROUP_CHAT_ID=${{ secrets.GROUP_CHAT_ID }}
-            MODERATOR_CHAT_ID=${{ secrets.MODERATOR_CHAT_ID }}
-            TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
