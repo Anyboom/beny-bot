@@ -86,7 +86,7 @@ export class BotUpdate {
 
   @Action(/^(approve|reject)_(.+)$/)
   async callback(@Ctx() context: TelegrafContext) {
-    const userId = String(context.from.id);
+    const userId = String(context?.from?.id);
     const isAdmin = this.rbacService.isAdmin(userId);
 
     if (!isAdmin) {
