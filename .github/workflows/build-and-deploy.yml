@@ -54,6 +54,4 @@ jobs:
           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker compose pull && exit"
       - name: Start application
         run: |
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }} 
-          MODERATOR_CHAT_ID=${{ secrets.MODERATOR_CHAT_ID }} GROUP_CHAT_ID=${{ secrets.GROUP_CHAT_ID }} 
-          CHANNEL_ID=${{ secrets.CHANNEL_ID }} ADMIN_CHAT_ID=${{ secrets.ADMIN_CHAT_ID }} docker compose up -d && exit"
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }} MODERATOR_CHAT_ID=${{ secrets.MODERATOR_CHAT_ID }} GROUP_CHAT_ID=${{ secrets.GROUP_CHAT_ID }} CHANNEL_ID=${{ secrets.CHANNEL_ID }} ADMIN_CHAT_ID=${{ secrets.ADMIN_CHAT_ID }} docker compose up -d && exit"
